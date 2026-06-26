@@ -1,0 +1,275 @@
+## **Claude Code Prompt — Vasi Ciolpan Coaching Website**
+
+### **Project Overview**
+
+Build a complete, production-ready multi-page website for **Vasi Ciolpan**, a relational coach and creator of the **HeartMapping** method. The site targets Romanian-speaking adults (single or in relationships) who repeat unhealthy relationship patterns and want emotional clarity.
+
+**Core value proposition:** *"Înțelege cum iubești. Alege mai bine. Construiește o relație conștientă."*
+
+---
+
+### **Tech Stack**
+
+* **React** (Vite) \+ **TypeScript**  
+* **Tailwind CSS** (custom theme configured in `tailwind.config.ts`)  
+* **React Router v6** for multi-page routing  
+* **Lucide React** for icons  
+* **Framer Motion** for scroll animations and transitions  
+* No external images — all visuals via SVG/CSS
+
+---
+
+### **Brand & Design System**
+
+#### **Color Palette (configure in Tailwind theme)**
+
+cream:      \#F5F1EA  (background)  
+sage:       \#688368  (primary accent)  
+forest:     \#405E40  (sage dark)  
+earth:      \#66503F  (body text warm brown)  
+brown:      \#422E1E  (headings dark)  
+terracotta: \#BF6E3E  (highlight accent)
+
+#### **Typography**
+
+* **Headings:** Playfair Display (Google Fonts) — large, expressive, airy  
+* **Body:** DM Sans (Google Fonts) — clean, readable  
+* Key words in headings highlighted in `terracotta`  
+* Heading sizes: hero h1 \~72px desktop, lots of negative space
+
+#### **Visual Language**
+
+* Soft rounded corners on cards (`rounded-2xl`)  
+* Very diffuse shadows (`shadow-sm`, custom warm shadow)  
+* Subtle topographic line patterns as SVG backgrounds in hero sections  
+* The **HeartMapping heart** — an SVG heart made of layered, undulating contour lines (like topographic map isolines) in sage \+ terracotta \+ cream gradients. Build this as a reusable `<HeartMapSVG />` component.  
+* Lots of whitespace. Calm, no visual aggression.  
+* Micro-interactions: hover on buttons/cards 200–300ms ease transitions, fade-in-up on scroll via Framer Motion
+
+---
+
+### **File Structure**
+
+src/  
+  components/  
+    layout/  
+      Header.tsx       \# sticky nav, hamburger mobile  
+      Footer.tsx  
+    ui/  
+      Button.tsx       \# variants: primary, secondary, ghost  
+      Card.tsx  
+      Badge.tsx  
+      Accordion.tsx    \# for FAQ  
+    HeartMapSVG.tsx    \# the signature watercolor-topo heart SVG  
+    TopoBg.tsx         \# reusable SVG topographic line background  
+  pages/  
+    Home.tsx  
+    HeartMapping.tsx  
+    Offers.tsx  
+    ProductPage.tsx    \# reusable template  
+  router.tsx  
+  main.tsx  
+  index.css  
+---
+
+### **Navigation (sticky header)**
+
+**Logo:** "Vasi Ciolpan" (Playfair Display, brown) \+ small "COACH" label below in sage  
+ **Links:** Acasă · Despre · HeartMapping · Oferte · Contact  
+ **CTA Button:** "Începe acum" (terracotta, filled)  
+ **Mobile:** hamburger → slide-down drawer with same links
+
+---
+
+### **Pages & Sections**
+
+#### **PAGE 1 — Acasă (`/`)**
+
+**1\. Hero**
+
+* Small label badge: "Coaching relațional & HeartMapping"  
+* H1 (3 lines): "Înțelege cum **iubești**. / Alege mai bine. / Construiește o relație conștientă." — "iubești" in terracotta  
+* Short paragraph description  
+* Two buttons: "Descoperă HeartMapping" (primary) · "Vezi produsele digitale" (secondary)  
+* Right side: `<HeartMapSVG />` on a cream card with soft shadow  
+* SVG topographic lines as background watermark
+
+**2\. Empathy Section — "Recunoști ceva din asta?"**
+
+* 4 cards with soft icon, each starting "Pentru cei care…":  
+  * repetă aceleași tipare în dating  
+  * vor o relație împlinitoare, nu doar atenție  
+  * sunt deja într-o relație și vor mai multă claritate  
+  * vor să înțeleagă de ce simt, aleg și reacționează cum o fac  
+* CTA link: "Vezi cum te pot ajuta →"
+
+**3\. HeartMapping Method Preview**
+
+* Styled placeholder for coaching session photo (sage gradient rectangle with soft overlay)  
+* Text: "HeartMapping este cadrul meu de lucru prin care explorăm 3 zone esențiale:"  
+* 3 icon+text points: Emoția dominantă · Valorile personale · Adaptările  
+* Blockquote: *"Scopul nu este doar să te înțelegi mai bine, ci să știi concret ce să schimbi în relații."*  
+* CTA: "Vezi sesiunea HeartMapping"
+
+**4\. "Cum lucrezi cu mine" — 3 numbered cards**
+
+* 01 Produse digitale — eBook-uri și ghiduri aplicate  
+* 02 Workshop-uri — experiențe de grup pentru claritate  
+* 03 Coaching 1:1 — lucru personalizat pentru schimbare reală
+
+**5\. Featured Products — "Produse în prim-plan"**  
+ Three product cards with badge, title, description, price range, CTA button:
+
+* Badge "eBook" · Prima întâlnire · 49–69 lei · "Cumpără acum"  
+* Badge "Cel mai popular" · Pachetul Relația Conștientă · 149–199 lei · "Cumpără acum"  
+* Badge "Premium" · HeartMapping Premium 1:1 · 1200–1800 lei · "Aplică acum"  
+* Link: "Vezi toate ofertele →"
+
+**6\. Results — "Ce obții, de fapt"**  
+ Checklist of benefits: claritate emoțională · mai puțină autosabotare · standarde mai sănătoase · comunicare mai conștientă · decizii mai bune în dating și cuplu
+
+**7\. About Preview**
+
+* Styled portrait placeholder (warm circular or rounded avatar in earth tones)  
+* H2: "Te ajut să înțelegi cum iubești, ca să nu mai alegi din confuzie."  
+* Paragraph about Vasi \+ HeartMapping  
+* CTA: "Descoperă metoda mea"
+
+**8\. Final CTA Band**
+
+* H2: "Nu ai nevoie de mai multă teorie. Ai nevoie de claritate."  
+* Sub: "Fă primul pas spre o relație conștientă."  
+* Two buttons: "Începe cu HeartMapping" · "Alege primul tău produs"  
+* Background: sage/forest gradient or subtle topo pattern
+
+**9\. Contact Teaser**  
+ "Hai să vorbim" \+ short text \+ email: `contact@vasiciolpan.coach`
+
+---
+
+#### **PAGE 2 — HeartMapping (`/heartmapping`)**
+
+* **Hero:** label "Metoda" · H1 "Heart**Mapping**" ("Mapping" in terracotta) · subtitle · `<HeartMapSVG />`  
+* **3 Zone Cards (01/02/03):**  
+  * Emoția dominantă — frica de abandon, nevoia de control, rușinea, anxietatea  
+  * Valorile personale — ce contează cu adevărat, nu ce crezi că ar trebui  
+  * Adaptările — evitare, people-pleasing, supracontrol  
+* **"Este pentru tine dacă…"** — bulleted list (5 items as described)  
+* **"Ce include sesiunea"** — list (6 items)  
+* **"Ce obții"** — list (5 items)  
+* **Pricing Cards:**  
+  * HeartMapping Intro · badge "Intrare" · 99 lei  
+  * HeartMapping Basic 1:1 · badge "Recomandat" · 450–600 lei  
+  * HeartMapping Premium 1:1 · badge "Premium" · 1200–1800 lei  
+* **FAQ Accordion** (5 questions with empathetic short answers):  
+  * Este pentru single sau și pentru cupluri?  
+  * Cât durează o sesiune?  
+  * Primesc materiale după sesiune?  
+  * Este terapie? *(clarify: coaching, not therapy)*  
+  * Cum știu ce variantă mi se potrivește?  
+* **Final CTA:** "Ești gata să-ți descoperi harta emoțională?" · "Vreau HeartMapping" \+ "Programează o conversație"
+
+---
+
+#### **PAGE 3 — Oferte (`/oferte`)**
+
+Header: "Alege ce ți se potrivește" \+ subtitle
+
+**Nivel de intrare — "Începe de aici"**
+
+* Prima întâlnire · 49–69 lei  
+* Prezența care seduce · 49–69 lei  
+* Vocea care îl face să rămână · 49–69 lei  
+* Pachetul Relația Conștientă · 149–199 lei  
+* HeartMapping Intro Diagnostic · 99 lei
+
+**Nivel mediu — "Lucrează ghidat"**
+
+* HeartMapping Workshop de grup · 249–390 lei  
+* HeartMapping Basic 1:1 · 450–600 lei
+
+**Premium — "Transformare profundă"**
+
+* HeartMapping Premium 1:1 · 1200–1800 lei  
+* HeartMapping pentru Cupluri · 1500–2200 lei  
+* Program intensiv de coaching relațional · 2500–3500 lei
+
+Final CTA: "Nu știi de unde să începi? Scrie-mi un mesaj." → "Contactează-mă"
+
+---
+
+#### **PAGE 4 — Product Template (`/oferte/:slug`)**
+
+Reusable component populated via props/data object. Sections:
+
+1. Breadcrumb "Toate ofertele"  
+2. Badge \+ H1 title \+ italic subtitle  
+3. Description paragraph  
+4. Price \+ "Cumpără acum" / "Aplică acum" button  
+5. "Este pentru tine dacă…" list  
+6. "Ce primești" checklist (with ✓ marks)  
+7. "Ce obții, de fapt" section  
+8. Investment block: price summary \+ "Plată securizată prin Stripe" note  
+9. Product-specific FAQ accordion  
+10. "Produse recomandate" cards (3, filtered to exclude current)
+
+Build a `products.ts` data file with all products as typed objects so `ProductPage.tsx` renders any product dynamically.
+
+---
+
+### **Footer (global)**
+
+3-column layout:
+
+* **Brand column:** "Vasi Ciolpan — Coaching relațional și HeartMapping..." \+ Email \+ Instagram icons  
+* **Navigare:** Acasă · HeartMapping · Oferte · Contact  
+* **Servicii:** Produse digitale · Workshop-uri · Coaching 1:1 · HeartMapping Premium · Coaching pentru cupluri  
+* Bottom bar: "© 2026 Vasi Ciolpan. Toate drepturile rezervate."
+
+---
+
+### **HeartMap SVG Component Spec**
+
+`<HeartMapSVG />` — build as a pure SVG component:
+
+* Heart shape as clip path or path  
+* Inside: 8–12 layered undulating closed curves (like topo isolines) in sage (`#688368`), terracotta (`#BF6E3E`), and cream (`#F5F1EA`), with varying stroke widths and low opacity  
+* Soft drop shadow on the overall shape  
+* Optionally animate the lines with a very slow, subtle CSS pulse (opacity 0.8→1.0, 4s ease-in-out infinite)  
+* Export as `HeartMapSVG.tsx`, accept `size` and `className` props
+
+---
+
+### **Animations & Interactions**
+
+* Framer Motion `whileInView` fade-in-up for section entries (staggered children)  
+* Button hover: scale(1.02) \+ slight shadow increase, 200ms  
+* Card hover: translateY(-4px) \+ shadow, 250ms  
+* Accordion: smooth height expand/collapse  
+* Nav: background becomes white with shadow on scroll  
+* All transitions: `ease-out` or `ease-in-out`, never linear/bouncy
+
+---
+
+### **Accessibility**
+
+* Semantic HTML: `<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`  
+* `aria-label` on icon buttons, hamburger toggle  
+* Visible `:focus-visible` rings (sage color)  
+* Sufficient contrast (WCAG AA minimum)  
+* `alt` text on all SVG illustrations via `aria-label` or `<title>`
+
+---
+
+### **Important Notes**
+
+* All content in **Romanian with correct diacritics** (ă, â, î, ș, ț)  
+* No external image dependencies — all visuals are SVG or CSS  
+* `TopoBg.tsx` — reusable component rendering subtle SVG topographic wavy lines as a section background (very low opacity, \~0.06, in sage or earth tone)  
+* Portrait placeholders: rounded rectangle/circle with a warm gradient (earth \+ cream) and a subtle person silhouette SVG  
+* Run `npm run build` with zero errors and zero console warnings
+
+---
+
+Start by scaffolding the project with Vite \+ React \+ TypeScript \+ Tailwind, install Framer Motion and Lucide React, configure the custom Tailwind theme, then build components bottom-up (SVGs → UI primitives → layout → pages).
+
