@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cariera Fântâna 3D</title>
+<style>
+  :root{--bg:#10151a;--panel:rgba(18,24,30,.88);--fg:#e8eef3;--mut:#93a3b1;--acc:#e8a33d;--line:#2b3742}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:14px/1.4 system-ui,Segoe UI,Roboto,Arial,sans-serif;overflow:hidden}
+  #c{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+  #panel{position:fixed;left:14px;top:14px;width:290px;max-height:calc(100% - 28px);overflow:auto;background:var(--panel);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:12px;padding:14px 14px 10px}
+  h1{font-size:16px;margin:0 0 2px}
+  .sub{color:var(--mut);font-size:12px;margin-bottom:10px}
+  h2{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin:12px 0 6px}
+  .row{display:flex;gap:6px;flex-wrap:wrap}
+  button{background:#1d2731;color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
+  button:hover:not(:disabled){border-color:var(--acc)} button.on{background:var(--acc);color:#1a1205;border-color:var(--acc);font-weight:600} button:disabled{opacity:.4;cursor:default}
+  label.chk{display:flex;align-items:center;gap:8px;padding:2px 0;cursor:pointer}
+  .sl{display:grid;grid-template-columns:78px 1fr 40px;align-items:center;gap:8px;margin:4px 0;font-size:13px}
+  input[type=range]{width:100%;accent-color:var(--acc)}
+  #readout{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:13px;color:var(--fg);white-space:nowrap}
+  #note{font-size:11.5px;color:var(--mut);margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+  #loading{position:fixed;inset:0;display:grid;place-items:center;background:var(--bg);font-size:15px;color:var(--mut);z-index:5}
+  @media(max-width:640px){#panel{width:calc(100% - 28px);max-height:42%}}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="loading">Se încarcă modelul…</div>
+<div id="panel">
+  <h1>Cariera Fântâna — 3D</h1>
+  <div class="sub">Reconstituit după harta geologică SC ROMET SA, 1997 (1:1000)</div>
+  <h2>Suprafață</h2>
+  <div class="row">
+    <button data-mode="elev" class="on">Altitudine</button>
+    <button data-mode="plan" id="tex-plan">Plan redesenat</button>
+    <button data-mode="scan" id="tex-scan">Planșa originală</button>
+  </div>
+  <h2>Vedere</h2>
+  <div class="row">
+    <button data-view="overview">Ansamblu</button><button data-view="quarry">Carieră</button>
+    <button data-view="face">Front</button><button data-view="stream">Pârâu</button><button data-view="sediu">Sediu</button>
+  </div>
+  <h2>Reglaje</h2>
+  <div class="sl"><span>Exagerare</span><input id="exag" type="range" min="1" max="4" step="0.1" value="1.6"><span id="exagv">1.6×</span></div>
+  <div class="sl"><span>Soare azimut</span><input id="sunaz" type="range" min="0" max="360" value="235"><span></span></div>
+  <div class="sl"><span>Soare înălțime</span><input id="sunel" type="range" min="8" max="80" value="38"><span></span></div>
+  <h2>Straturi</h2>
+  <label class="chk"><input type="checkbox" id="t-stream"> Pârâul Fântâna</label>
+  <label class="chk"><input type="checkbox" id="t-blocks"> Blocuri de rezerve (B / C₁)</label>
+  <label class="chk"><input type="checkbox" id="t-labels"> Etichete blocuri</label>
+  <label class="chk"><input type="checkbox" id="t-buildings"> Clădiri</label>
+  <label class="chk"><input type="checkbox" id="t-spots"> Cote punctuale</label>
+  <label class="chk"><input type="checkbox" id="wire"> Rețea (wireframe)</label>
+  <div id="note">Model orientativ: curbele și cotele sunt citite de pe fotografii ale planșei; zonele neridicate (colțuri, versantul sudic) sunt extrapolate și apar estompate. Orientare ca pe planșă — nordul indică spre dreapta. Mouse: rotire · scroll: zoom · click dreapta: deplasare.</div>
+</div>
+<div id="readout">Mută cursorul peste teren pentru cotă</div>
+<script src="data/dem.js"></script>
+<script src="data/features.js"></script>
+<script src="data/scan.js"></script>
+<script src="data/plan.js"></script>
+<script src="vendor/app.js"></script>
+</body>
+</html>
